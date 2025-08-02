@@ -1,7 +1,7 @@
 package br.com.victor.Marketplace.controller;
 
-import br.com.victor.Marketplace.Dto.CreateCustomerRequestDTO;
-import br.com.victor.Marketplace.Dto.CustomerResponseDTO;
+import br.com.victor.Marketplace.dto.CreateCustomerRequestDTO;
+import br.com.victor.Marketplace.dto.CustomerResponseDTO;
 import br.com.victor.Marketplace.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;

@@ -1,19 +1,19 @@
 package br.com.victor.Marketplace.service;
 
-import br.com.victor.Marketplace.Dto.CreateCustomerRequestDTO;
-import br.com.victor.Marketplace.Dto.CustomerResponseDTO;
+import br.com.victor.Marketplace.dto.CreateCustomerRequestDTO;
+import br.com.victor.Marketplace.dto.CustomerResponseDTO;
 import br.com.victor.Marketplace.entity.Customer;
 import br.com.victor.Marketplace.exception.CpfAlreadyExistsException;
 import br.com.victor.Marketplace.exception.CustomerNotFoundException;
 import br.com.victor.Marketplace.exception.EmailAlreadyExistsException;
 import br.com.victor.Marketplace.exception.InvalidPasswordException;
 import br.com.victor.Marketplace.repository.CustomerRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -25,6 +25,7 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
+    @Transactional
     public CustomerResponseDTO createCustomer(CreateCustomerRequestDTO dto) {
 
         if (!dto.password().equals(dto.passwordConfirmation())) {
@@ -66,6 +67,7 @@ public class CustomerService {
         return customerRepository.findAll(pageable).map(CustomerResponseDTO::entityFromDTO);
     }
 
+    @Transactional
     public void deleteCustomerFromId(UUID id) {
         if (!customerRepository.existsById(id)) {
             throw new CustomerNotFoundException("Customer with id " + id + " not found.");

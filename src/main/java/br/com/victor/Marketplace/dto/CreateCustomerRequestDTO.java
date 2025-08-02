@@ -1,4 +1,4 @@
-package br.com.victor.Marketplace.Dto;
+package br.com.victor.Marketplace.dto;
 
 import br.com.victor.Marketplace.entity.enums.Gender;
 import jakarta.validation.constraints.Email;
