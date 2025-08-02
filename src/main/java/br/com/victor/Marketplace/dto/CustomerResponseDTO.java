@@ -1,6 +1,6 @@
 package br.com.victor.Marketplace.dto;
 
-import br.com.victor.Marketplace.entity.Customer;
+import br.com.victor.Marketplace.entity.customer.Customer;
 import br.com.victor.Marketplace.entity.enums.Gender;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package br.com.victor.Marketplace.entity;
+package br.com.victor.Marketplace.entity.customer;
 
 import br.com.victor.Marketplace.entity.enums.Gender;
 import jakarta.persistence.*;

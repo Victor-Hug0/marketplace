@@ -2,7 +2,7 @@ package br.com.victor.Marketplace.service;
 
 import br.com.victor.Marketplace.dto.CreateCustomerRequestDTO;
 import br.com.victor.Marketplace.dto.CustomerResponseDTO;
-import br.com.victor.Marketplace.entity.Customer;
+import br.com.victor.Marketplace.entity.customer.Customer;
 import br.com.victor.Marketplace.exception.CpfAlreadyExistsException;
 import br.com.victor.Marketplace.exception.CustomerNotFoundException;
 import br.com.victor.Marketplace.exception.EmailAlreadyExistsException;
