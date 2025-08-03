@@ -3,6 +3,7 @@ package br.com.victor.Marketplace.service;
 import br.com.victor.Marketplace.dto.CreateAddressRequestDTO;
 import br.com.victor.Marketplace.entity.Address;
 import br.com.victor.Marketplace.repository.AddressRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,7 @@ public class AddessService {
         this.addressRepository = addressRepository;
     }
 
+    @Transactional
     public Address createAddress(CreateAddressRequestDTO addressRequestDTO) {
         Address address = new Address(
                 addressRequestDTO.zipCode(),

@@ -66,6 +66,10 @@ public class Customer {
         this.updatedAt = updatedAt;
     }
 
+    public List<CustomerAddresses> getCustomerAddresses() {
+        return customerAddresses;
+    }
+
     public UUID getId() {
         return id;
     }

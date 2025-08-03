@@ -1,12 +1,16 @@
 package br.com.victor.Marketplace.service;
 
+import br.com.victor.Marketplace.dto.CreateAddressRequestDTO;
 import br.com.victor.Marketplace.dto.CreateCustomerRequestDTO;
 import br.com.victor.Marketplace.dto.CustomerResponseDTO;
+import br.com.victor.Marketplace.entity.Address;
 import br.com.victor.Marketplace.entity.customer.Customer;
+import br.com.victor.Marketplace.entity.customer.CustomerAddresses;
 import br.com.victor.Marketplace.exception.CpfAlreadyExistsException;
 import br.com.victor.Marketplace.exception.CustomerNotFoundException;
 import br.com.victor.Marketplace.exception.EmailAlreadyExistsException;
 import br.com.victor.Marketplace.exception.InvalidPasswordException;
+import br.com.victor.Marketplace.repository.AddressRepository;
 import br.com.victor.Marketplace.repository.CustomerRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
@@ -14,15 +18,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
+    private final AddessService addessService;
+    private final CustomerAddressesService customerAddressesService;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository,  AddessService addessService,  CustomerAddressesService customerAddressesService) {
         this.customerRepository = customerRepository;
+        this.addessService = addessService;
+        this.customerAddressesService = customerAddressesService;
     }
 
     @Transactional
@@ -76,5 +85,16 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
+    public CustomerResponseDTO createCustomerAddress(CreateAddressRequestDTO dto, UUID id) {
+        Optional<Customer> customer = customerRepository.findById(id);
 
+        if (customer.isEmpty()) {
+            throw new CustomerNotFoundException("Customer with id " + id + " not found.");
+        }
+
+        Address address = addessService.createAddress(dto);
+        customerAddressesService.createCustomerAddresses(customer.get(), address);
+
+        return CustomerResponseDTO.entityFromDTO(customer.get());
+    }
 }

@@ -25,4 +25,12 @@ public class CustomerAddresses {
 
     public CustomerAddresses() {
     }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 }
