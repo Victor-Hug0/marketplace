@@ -1,6 +1,6 @@
 package br.com.victor.Marketplace.entity.store;
 
-import br.com.victor.Marketplace.entity.Address;
+import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.entity.enums.Gender;
 import br.com.victor.Marketplace.entity.enums.StoreOwnerType;
 import jakarta.persistence.Column;

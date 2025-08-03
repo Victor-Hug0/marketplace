@@ -1,6 +1,6 @@
-package br.com.victor.Marketplace.entity.customer;
+package br.com.victor.Marketplace.entity.address;
 
-import br.com.victor.Marketplace.entity.Address;
+import br.com.victor.Marketplace.entity.customer.Customer;
 import jakarta.persistence.*;
 
 @Entity

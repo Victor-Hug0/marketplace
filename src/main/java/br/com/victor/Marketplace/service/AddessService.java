@@ -1,7 +1,7 @@
 package br.com.victor.Marketplace.service;
 
 import br.com.victor.Marketplace.dto.CreateAddressRequestDTO;
-import br.com.victor.Marketplace.entity.Address;
+import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.repository.AddressRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

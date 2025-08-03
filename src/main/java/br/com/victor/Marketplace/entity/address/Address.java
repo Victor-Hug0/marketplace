@@ -1,4 +1,4 @@
-package br.com.victor.Marketplace.entity;
+package br.com.victor.Marketplace.entity.address;
 
 import jakarta.persistence.*;
 

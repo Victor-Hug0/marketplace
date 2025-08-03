@@ -1,8 +1,8 @@
 package br.com.victor.Marketplace.service;
 
-import br.com.victor.Marketplace.entity.Address;
+import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.entity.customer.Customer;
-import br.com.victor.Marketplace.entity.customer.CustomerAddresses;
+import br.com.victor.Marketplace.entity.address.CustomerAddresses;
 import br.com.victor.Marketplace.repository.CustomerAddressRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

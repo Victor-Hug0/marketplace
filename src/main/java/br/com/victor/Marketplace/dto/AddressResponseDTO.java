@@ -1,6 +1,6 @@
 package br.com.victor.Marketplace.dto;
 
-import br.com.victor.Marketplace.entity.Address;
+import br.com.victor.Marketplace.entity.address.Address;
 
 public record AddressResponseDTO(
         Long id,
