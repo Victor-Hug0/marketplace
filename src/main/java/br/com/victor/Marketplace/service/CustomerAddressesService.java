@@ -19,6 +19,7 @@ public class CustomerAddressesService {
     @Transactional
     public void createCustomerAddresses(Customer customer, Address address) {
         CustomerAddresses customerAddresses = new CustomerAddresses(address, customer);
+        customer.getCustomerAddresses().add(customerAddresses);
         customerAddressRepository.saveAndFlush(customerAddresses);
     }
 }
