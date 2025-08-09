@@ -48,7 +48,7 @@ public class CustomerController {
     }
 
     @PostMapping("/{id}/vinclateAddress")
-    public ResponseEntity<CustomerResponseDTO> vinculateAddressToCustomer(@PathVariable UUID id, @RequestBody CreateAddressRequestDTO dto) {
+    public ResponseEntity<CustomerResponseDTO> vinculateAddressToCustomer(@PathVariable(name = "id") UUID id, @RequestBody CreateAddressRequestDTO dto) {
         CustomerResponseDTO responseDTO = customerService.createCustomerAddress(dto, id);
         return ResponseEntity.ok(responseDTO);
     }
