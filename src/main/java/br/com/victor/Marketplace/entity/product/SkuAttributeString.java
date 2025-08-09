@@ -1,5 +1,6 @@
 package br.com.victor.Marketplace.entity.product;
 
+import br.com.victor.Marketplace.entity.enums.AttributeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

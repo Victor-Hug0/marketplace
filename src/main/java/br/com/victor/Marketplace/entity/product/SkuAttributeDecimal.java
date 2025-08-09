@@ -1,5 +1,6 @@
 package br.com.victor.Marketplace.entity.product;
 
+import br.com.victor.Marketplace.entity.enums.AttributeType;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
