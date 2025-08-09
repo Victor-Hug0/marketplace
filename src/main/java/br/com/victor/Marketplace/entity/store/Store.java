@@ -1,9 +1,11 @@
 package br.com.victor.Marketplace.entity.store;
 
+import br.com.victor.Marketplace.entity.product.Product;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "stores")
@@ -35,6 +37,9 @@ public class Store {
 
     @Column(name = "contact_email",   nullable = false,  unique = true)
     private String contactEmail;
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Product> products;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "store_status",  nullable = false)
@@ -69,6 +74,14 @@ public class Store {
 
     public Long getId() {
         return id;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public String getCompanyName() {

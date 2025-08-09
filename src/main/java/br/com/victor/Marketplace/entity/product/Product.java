@@ -1,5 +1,7 @@
 package br.com.victor.Marketplace.entity.product;
 
+import br.com.victor.Marketplace.entity.store.Store;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -18,6 +20,11 @@ public class Product {
     @Column(nullable = false)
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_id")
+    @JsonBackReference
+    private Store store;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "product_categories",
@@ -25,6 +32,9 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private List<Category> categories;
+
+    @OneToMany(mappedBy = "product",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sku> skus;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;

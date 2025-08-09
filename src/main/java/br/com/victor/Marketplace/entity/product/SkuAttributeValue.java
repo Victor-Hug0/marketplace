@@ -1,10 +1,10 @@
 package br.com.victor.Marketplace.entity.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "attributes")
-public class Attribute {
+@MappedSuperclass
+public abstract class SkuAttributeValue<T> {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,16 +16,20 @@ public class Attribute {
     @Enumerated(EnumType.STRING)
     private AttributeType type;
 
-    public Attribute(String name, AttributeType type) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sku_id",  nullable = false)
+    @JsonBackReference
+    private Sku sku;
+
+    public SkuAttributeValue(String name, AttributeType type) {
         this.name = name;
         this.type = type;
     }
 
-    public Attribute() {}
+    public SkuAttributeValue() {}
 
-    public Long getId() {
-        return id;
-    }
+    public abstract T getValue();
+    public abstract void setValue(T value);
 
     public String getName() {
         return name;
