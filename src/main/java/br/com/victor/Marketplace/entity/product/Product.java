@@ -25,6 +25,14 @@ public class Product {
     @JsonBackReference
     private Store store;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ProductStatus status =  ProductStatus.IN_REVIEW;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id",  nullable = false)
+    private ProductBrand brand;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "product_categories",
@@ -42,9 +50,12 @@ public class Product {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public Product(String name, String description) {
+    public Product(String name, String description, Store store, ProductBrand brand, List<Category> categories) {
         this.name = name;
         this.description = description;
+        this.store = store;
+        this.brand = brand;
+        this.categories = categories;
     }
 
     public Product() {}
@@ -59,6 +70,14 @@ public class Product {
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public ProductStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ProductStatus status) {
+        this.status = status;
     }
 
     public List<Sku> getSkus() {

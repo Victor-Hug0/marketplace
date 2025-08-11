@@ -1,0 +1,12 @@
+CREATE TABLE product_brands(
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE
+);
+
+ALTER TABLE products ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'IN_REVIEW';
+
+ALTER TABLE products ADD COLUMN brand_id BIGINT;
+
+ALTER TABLE products ALTER COLUMN brand_id SET NOT NULL;
+
+ALTER TABLE products ADD CONSTRAINT fk_product_on_brand FOREIGN KEY (brand_id) REFERENCES product_brands(id) ON DELETE RESTRICT;
