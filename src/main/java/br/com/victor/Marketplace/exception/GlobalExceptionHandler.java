@@ -10,16 +10,17 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ErrorResponseDTO> handleResourceNotFoundException(ResourceNotFoundException e,  HttpServletRequest request) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.NOT_FOUND.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(CpfAlreadyExistsException.class)
     public ResponseEntity<ErrorResponseDTO> handleCpfAlreadyExistExeption(CpfAlreadyExistsException e, HttpServletRequest request) {
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.CONFLICT.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(CustomerNotFoundException.class)
-    public ResponseEntity<ErrorResponseDTO> handleCustomerNotFoundExeption(CustomerNotFoundException e, HttpServletRequest request) {
-        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.NOT_FOUND.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
-        return new ResponseEntity<>(errorResponseDTO, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
@@ -50,11 +51,5 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleFantasyNameAlreadyExistsExeption(FantasyNameAlreadyExistsException e, HttpServletRequest request) {
         ErrorResponseDTO errorResponseDTO = new  ErrorResponseDTO(HttpStatus.CONFLICT.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(StoreNotFoundException.class)
-    public ResponseEntity<ErrorResponseDTO> handleStoreNotFoundExeption(StoreNotFoundException e, HttpServletRequest request) {
-        ErrorResponseDTO errorResponseDTO = new  ErrorResponseDTO(HttpStatus.NOT_FOUND.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
-        return new ResponseEntity<>(errorResponseDTO, HttpStatus.NOT_FOUND);
     }
 }

@@ -5,10 +5,7 @@ import br.com.victor.Marketplace.dto.StoreResponseDTO;
 import br.com.victor.Marketplace.entity.store.Store;
 import br.com.victor.Marketplace.entity.store.StoreOwner;
 import br.com.victor.Marketplace.entity.store.StoreStatus;
-import br.com.victor.Marketplace.exception.CompanyNameAlredyExistsException;
-import br.com.victor.Marketplace.exception.CompanyRegistrationNumberAlreadyExistsException;
-import br.com.victor.Marketplace.exception.FantasyNameAlreadyExistsException;
-import br.com.victor.Marketplace.exception.StoreNotFoundException;
+import br.com.victor.Marketplace.exception.*;
 import br.com.victor.Marketplace.repository.StoreOwnerNaturalPersonRepository;
 import br.com.victor.Marketplace.repository.StoreRepository;
 import org.springframework.data.domain.Page;
@@ -81,7 +78,7 @@ public class StoreService {
     public StoreResponseDTO getStoreById(Long id) {
 
         Store store = storeRepository.findById(id)
-                .orElseThrow(() -> new StoreNotFoundException("Store not found with ID: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Store not found with ID: " + id));
 
         return StoreResponseDTO.entityFromDTO(store);
     }

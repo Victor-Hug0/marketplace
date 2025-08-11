@@ -5,10 +5,7 @@ import br.com.victor.Marketplace.dto.CreateCustomerRequestDTO;
 import br.com.victor.Marketplace.dto.CustomerResponseDTO;
 import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.entity.customer.Customer;
-import br.com.victor.Marketplace.exception.CpfAlreadyExistsException;
-import br.com.victor.Marketplace.exception.CustomerNotFoundException;
-import br.com.victor.Marketplace.exception.EmailAlreadyExistsException;
-import br.com.victor.Marketplace.exception.InvalidPasswordException;
+import br.com.victor.Marketplace.exception.*;
 import br.com.victor.Marketplace.repository.CustomerRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
@@ -66,7 +63,7 @@ public class CustomerService {
     }
 
     public CustomerResponseDTO getCustomerFromId(UUID id) {
-        Customer customer = customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException("Customer with id " + id + "not found."));
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Customer with id " + id + "not found."));
         return CustomerResponseDTO.entityFromDTO(customer);
     }
 
@@ -77,7 +74,7 @@ public class CustomerService {
     @Transactional
     public void deleteCustomerFromId(UUID id) {
         if (!customerRepository.existsById(id)) {
-            throw new CustomerNotFoundException("Customer with id " + id + " not found.");
+            throw new ResourceNotFoundException("Customer with id " + id + " not found.");
         }
 
         customerRepository.deleteById(id);
@@ -87,7 +84,7 @@ public class CustomerService {
         Optional<Customer> customer = customerRepository.findById(id);
 
         if (customer.isEmpty()) {
-            throw new CustomerNotFoundException("Customer with id " + id + " not found.");
+            throw new ResourceNotFoundException("Customer with id " + id + " not found.");
         }
 
         Address address = addressService.createAddress(dto);
