@@ -33,4 +33,22 @@ public class GlobalExceptionHandler {
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(CompanyNameAlredyExistsException.class)
+    public ResponseEntity<ErrorResponseDTO> handleCompanyNameAlredyExistsExeption(CompanyNameAlredyExistsException e, HttpServletRequest request) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.CONFLICT.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(CompanyRegistrationNumberAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponseDTO> handleCompanyRegistrationNumberAlreadyExistsExeption(CompanyRegistrationNumberAlreadyExistsException e, HttpServletRequest request) {
+        ErrorResponseDTO errorResponseDTO =  new ErrorResponseDTO(HttpStatus.CONFLICT.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(FantasyNameAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponseDTO> handleFantasyNameAlreadyExistsExeption(FantasyNameAlreadyExistsException e, HttpServletRequest request) {
+        ErrorResponseDTO errorResponseDTO = new  ErrorResponseDTO(HttpStatus.CONFLICT.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.CONFLICT);
+    }
 }

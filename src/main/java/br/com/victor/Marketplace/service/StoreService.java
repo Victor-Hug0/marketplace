@@ -5,6 +5,9 @@ import br.com.victor.Marketplace.dto.StoreResponseDTO;
 import br.com.victor.Marketplace.entity.store.Store;
 import br.com.victor.Marketplace.entity.store.StoreOwner;
 import br.com.victor.Marketplace.entity.store.StoreStatus;
+import br.com.victor.Marketplace.exception.CompanyNameAlredyExistsException;
+import br.com.victor.Marketplace.exception.CompanyRegistrationNumberAlreadyExistsException;
+import br.com.victor.Marketplace.exception.FantasyNameAlreadyExistsException;
 import br.com.victor.Marketplace.repository.StoreOwnerNaturalPersonRepository;
 import br.com.victor.Marketplace.repository.StoreRepository;
 import org.springframework.stereotype.Service;
@@ -35,15 +38,15 @@ public class StoreService {
         if (!conflictStores.isEmpty()) {
             for  (Store conflictStore : conflictStores) {
                 if (conflictStore.getCompanyName().equalsIgnoreCase(dto.companyName())) {
-                    throw new RuntimeException("Company name already exists");
+                    throw new CompanyNameAlredyExistsException("Company name already exists");
                 }
 
                 if (conflictStore.getFantasyName().equalsIgnoreCase(dto.fantasyName())) {
-                    throw new RuntimeException("Fantasy name already exists");
+                    throw new FantasyNameAlreadyExistsException("Fantasy name already exists");
                 }
 
                 if (conflictStore.getCompanyRegistrationNumber().equalsIgnoreCase(dto.companyRegistrationNumber())) {
-                    throw new RuntimeException("Company registration number already exists");
+                    throw new CompanyRegistrationNumberAlreadyExistsException("Company registration number already exists");
                 }
             }
         }
