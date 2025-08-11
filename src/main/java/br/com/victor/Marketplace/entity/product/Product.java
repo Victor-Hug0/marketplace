@@ -21,7 +21,7 @@ public class Product {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
+    @JoinColumn(name = "store_id",  nullable = false)
     @JsonBackReference
     private Store store;
 
@@ -51,6 +51,22 @@ public class Product {
 
     public Long getId() {
         return id;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+    public List<Sku> getSkus() {
+        return skus;
+    }
+
+    public void setSkus(List<Sku> skus) {
+        this.skus = skus;
     }
 
     public String getName() {

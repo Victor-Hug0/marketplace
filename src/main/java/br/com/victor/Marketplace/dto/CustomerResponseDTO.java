@@ -24,7 +24,7 @@ public record CustomerResponseDTO(
     public static CustomerResponseDTO entityFromDTO(Customer customer) {
         List<AddressResponseDTO> addresses = customer.getCustomerAddresses().stream()
                 .map(CustomerAddresses::getAddress)
-                .map(AddressResponseDTO::fromEntity)
+                .map(AddressResponseDTO::entityFromDTO)
                 .toList();
 
         return new CustomerResponseDTO(

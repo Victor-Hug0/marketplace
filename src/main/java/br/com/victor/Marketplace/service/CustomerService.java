@@ -23,12 +23,12 @@ import java.util.UUID;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final AddessService addessService;
+    private final AddressService addressService;
     private final CustomerAddressesService customerAddressesService;
 
-    public CustomerService(CustomerRepository customerRepository,  AddessService addessService,  CustomerAddressesService customerAddressesService) {
+    public CustomerService(CustomerRepository customerRepository, AddressService addressService, CustomerAddressesService customerAddressesService) {
         this.customerRepository = customerRepository;
-        this.addessService = addessService;
+        this.addressService = addressService;
         this.customerAddressesService = customerAddressesService;
     }
 
@@ -90,7 +90,7 @@ public class CustomerService {
             throw new CustomerNotFoundException("Customer with id " + id + " not found.");
         }
 
-        Address address = addessService.createAddress(dto);
+        Address address = addressService.createAddress(dto);
         customerAddressesService.createCustomerAddresses(customer.get(), address);
 
         return CustomerResponseDTO.entityFromDTO(customer.get());

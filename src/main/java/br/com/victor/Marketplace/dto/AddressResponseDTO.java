@@ -13,7 +13,7 @@ public record AddressResponseDTO(
         String number
 ) {
 
-    public static AddressResponseDTO fromEntity(Address address) {
+    public static AddressResponseDTO entityFromDTO(Address address) {
         return new AddressResponseDTO(
                 address.getId(),
                 address.getZipCode(),

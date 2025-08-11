@@ -1,10 +1,12 @@
 package br.com.victor.Marketplace.entity.store;
 
 import br.com.victor.Marketplace.entity.product.Product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,6 +25,11 @@ public class Store {
     @Column(name = "company_registration_number",   nullable = false,  unique = true)
     private String companyRegistrationNumber;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "store_owner_id",  nullable = false)
+    @JsonBackReference
+    private StoreOwner storeOwner;
+
     @Column(nullable = false)
     private String biography;
 
@@ -39,7 +46,7 @@ public class Store {
     private String contactEmail;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "store_status",  nullable = false)
@@ -57,16 +64,18 @@ public class Store {
     @Column(name = "updated_at",  nullable = false)
     private LocalDateTime updatedAt;
 
-    public Store(String companyName, String fantasyName, String companyRegistrationNumber, String biography, String contactEmail, StoreStatus storeStatus, LocalDateTime createdAt, LocalDateTime updatedAt, BigDecimal averageRating) {
+    public Store(String companyName, String fantasyName, String companyRegistrationNumber, StoreOwner storeOwner, String biography, String contactEmail, String contactPhoneNumber, StoreStatus storeStatus, BigDecimal averageRating, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.companyName = companyName;
         this.fantasyName = fantasyName;
         this.companyRegistrationNumber = companyRegistrationNumber;
+        this.storeOwner = storeOwner;
         this.biography = biography;
         this.contactEmail = contactEmail;
+        this.contactPhoneNumber = contactPhoneNumber;
         this.storeStatus = storeStatus;
+        this.averageRating = averageRating;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.averageRating = averageRating;
     }
 
     public Store() {
@@ -74,6 +83,14 @@ public class Store {
 
     public Long getId() {
         return id;
+    }
+
+    public StoreOwner getStoreOwner() {
+        return storeOwner;
+    }
+
+    public void setStoreOwner(StoreOwner storeOwner) {
+        this.storeOwner = storeOwner;
     }
 
     public List<Product> getProducts() {

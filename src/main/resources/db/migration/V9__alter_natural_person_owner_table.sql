@@ -1,0 +1,1 @@
+ALTER TABLE natural_person_owner ALTER COLUMN ssn TYPE VARCHAR(11);

@@ -3,9 +3,12 @@ package br.com.victor.Marketplace.entity.store;
 import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.entity.enums.Gender;
 import br.com.victor.Marketplace.entity.enums.StoreOwnerType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "store_owner")
@@ -32,7 +35,11 @@ public class StoreOwner {
     @Enumerated(EnumType.STRING)
     private StoreOwnerType storeOwnerType;
 
-    @JoinColumn(nullable = false)
+    @OneToMany(mappedBy = "storeOwner",  fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Store>  stores = new ArrayList<>();
+
+    @JoinColumn(name = "address_id", nullable = false)
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
@@ -53,6 +60,14 @@ public class StoreOwner {
     }
 
     public StoreOwner() {}
+
+    public List<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
+    }
 
     public Long getId() {
         return id;

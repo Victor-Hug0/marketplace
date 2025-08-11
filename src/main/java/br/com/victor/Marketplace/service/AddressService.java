@@ -7,11 +7,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AddessService {
+public class AddressService {
 
     private final AddressRepository addressRepository;
 
-    public AddessService(AddressRepository addressRepository) {
+    public AddressService(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
 
