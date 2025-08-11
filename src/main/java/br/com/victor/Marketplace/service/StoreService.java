@@ -8,9 +8,13 @@ import br.com.victor.Marketplace.entity.store.StoreStatus;
 import br.com.victor.Marketplace.exception.CompanyNameAlredyExistsException;
 import br.com.victor.Marketplace.exception.CompanyRegistrationNumberAlreadyExistsException;
 import br.com.victor.Marketplace.exception.FantasyNameAlreadyExistsException;
+import br.com.victor.Marketplace.exception.StoreNotFoundException;
 import br.com.victor.Marketplace.repository.StoreOwnerNaturalPersonRepository;
 import br.com.victor.Marketplace.repository.StoreRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,6 +31,7 @@ public class StoreService {
         this.storeOwnerNaturalPersonRepository = storeOwnerNaturalPersonRepository;
     }
 
+    @Transactional
     public StoreResponseDTO createStore(CreateStoreRequestDTO dto) {
 
         List<Store> conflictStores = storeRepository.findByCompanyNameOrFantasyNameOrCompanyRegistrationNumber(
@@ -71,5 +76,17 @@ public class StoreService {
         storeRepository.save(store);
 
         return StoreResponseDTO.entityFromDTO(store);
+    }
+
+    public StoreResponseDTO getStoreById(Long id) {
+
+        Store store = storeRepository.findById(id)
+                .orElseThrow(() -> new StoreNotFoundException("Store not found with ID: " + id));
+
+        return StoreResponseDTO.entityFromDTO(store);
+    }
+
+    public Page<StoreResponseDTO> getAllStores(Pageable pageable) {
+        return storeRepository.findAll(pageable).map(StoreResponseDTO::entityFromDTO);
     }
 }
