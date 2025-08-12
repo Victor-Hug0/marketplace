@@ -48,20 +48,41 @@ public class Product {
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
+    private LocalDateTime publishedAt;
+
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    public Product(String name, String description, Store store, ProductBrand brand, List<Category> categories) {
+    public Product(String name, String description, Store store, ProductBrand brand, List<Category> categories, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.name = name;
         this.description = description;
         this.store = store;
         this.brand = brand;
         this.categories = categories;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Product() {}
 
     public Long getId() {
         return id;
+    }
+
+    public ProductBrand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(ProductBrand brand) {
+        this.brand = brand;
+    }
+
+    public LocalDateTime getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(LocalDateTime publishedAt) {
+        this.publishedAt = publishedAt;
     }
 
     public Store getStore() {
@@ -126,5 +147,10 @@ public class Product {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public void addSku(Sku sku) {
+        this.skus.add(sku);
+        sku.setProduct(this);
     }
 }

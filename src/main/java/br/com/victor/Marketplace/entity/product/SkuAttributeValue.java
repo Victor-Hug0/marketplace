@@ -47,4 +47,12 @@ public abstract class SkuAttributeValue<T> {
     public void setType(AttributeType type) {
         this.type = type;
     }
+
+    public Sku getSku() {
+        return sku;
+    }
+
+    public void setSku(Sku sku) {
+        this.sku = sku;
+    }
 }

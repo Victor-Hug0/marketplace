@@ -42,14 +42,11 @@ public class Sku {
 
     public Sku() {}
 
-    public Sku(String skuCode, BigDecimal price, Integer stock, Product product, List<SkuAttributeDecimal> skuAttributesDecimal, List<SkuAttributeInteger> skuAttributesInteger, List<SkuAttributeString> skuAttributesString) {
+    public Sku(String skuCode, BigDecimal price, Integer stock, Product product) {
         this.skuCode = skuCode;
         this.price = price;
         this.stock = stock;
         this.product = product;
-        this.skuAttributesDecimal = skuAttributesDecimal;
-        this.skuAttributesInteger = skuAttributesInteger;
-        this.skuAttributesString = skuAttributesString;
     }
 
     public void addSkuAttributeDecimal(SkuAttributeDecimal skuAttributeDecimal) {
@@ -122,5 +119,20 @@ public class Sku {
 
     public void setSkuAttributesString(List<SkuAttributeString> skuAttributesString) {
         this.skuAttributesString = skuAttributesString;
+    }
+
+    public void addDecimalAttribute(SkuAttributeDecimal attribute) {
+        this.skuAttributesDecimal.add(attribute);
+        attribute.setSku(this);
+    }
+
+    public void addIntegerAttribute(SkuAttributeInteger attribute) {
+        this.skuAttributesInteger.add(attribute);
+        attribute.setSku(this);
+    }
+
+    public void addStringAttribute(SkuAttributeString attribute) {
+        this.skuAttributesString.add(attribute);
+        attribute.setSku(this);
     }
 }
