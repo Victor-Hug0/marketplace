@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,7 +43,7 @@ public class Product {
     private List<Category> categories;
 
     @OneToMany(mappedBy = "product",  cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Sku> skus;
+    private List<Sku> skus = new ArrayList<>();
 
     @Column(nullable = false)
     private LocalDateTime createdAt;

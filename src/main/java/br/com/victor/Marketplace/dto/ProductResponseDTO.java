@@ -1,6 +1,7 @@
 package br.com.victor.Marketplace.dto;
 
 import br.com.victor.Marketplace.entity.product.Product;
+import br.com.victor.Marketplace.entity.product.ProductStatus;
 
 
 import java.time.LocalDateTime;
@@ -10,9 +11,11 @@ public record ProductResponseDTO(
         Long id,
         String name,
         String description,
+        ProductStatus status,
         List<CategoryResponseDTO> categories,
         List<SkuResponseDTO> skus,
         LocalDateTime createdAt,
+        LocalDateTime publishedAt,
         LocalDateTime updatedAt
 ) {
 
@@ -30,9 +33,11 @@ public record ProductResponseDTO(
                 product.getId(),
                 product.getName(),
                 product.getDescription(),
+                product.getStatus(),
                 categoryResponseDTOS,
                 skuResponseDTOS,
                 product.getCreatedAt(),
+                product.getPublishedAt(),
                 product.getUpdatedAt()
         );
     }

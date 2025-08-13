@@ -12,6 +12,8 @@ import br.com.victor.Marketplace.repository.CategoryRepository;
 import br.com.victor.Marketplace.repository.ProductBrandRepository;
 import br.com.victor.Marketplace.repository.ProductRepository;
 import br.com.victor.Marketplace.repository.StoreRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +24,7 @@ import java.util.List;
 @Service
 public class ProductService {
 
+    private static final Logger log = LoggerFactory.getLogger(ProductService.class);
     private final ProductRepository productRepository;
     private final StoreRepository storeRepository;
     private final ProductBrandRepository productBrandRepository;
@@ -62,14 +65,17 @@ public class ProductService {
                 switch (attributeRequestDTO.type()) {
                     case DECIMAL -> {
                         SkuAttributeDecimal skuAttributeDecimal = new SkuAttributeDecimal(attributeRequestDTO.name(), AttributeType.DECIMAL, new BigDecimal(attributeRequestDTO.value()));
+                        log.info(skuAttributeDecimal.toString());
                         sku.addDecimalAttribute(skuAttributeDecimal);
                     }
                     case INTEGER -> {
                         SkuAttributeInteger skuAttributeInteger = new SkuAttributeInteger(attributeRequestDTO.name(), AttributeType.INTEGER, Integer.parseInt(attributeRequestDTO.value()));
+                        log.info(skuAttributeInteger.toString());
                         sku.addIntegerAttribute(skuAttributeInteger);
                     }
                     case VARCHAR -> {
                         SkuAttributeString skuAttributeString = new SkuAttributeString(attributeRequestDTO.name(), AttributeType.VARCHAR, attributeRequestDTO.value());
+                        log.info(skuAttributeString.toString());
                         sku.addStringAttribute(skuAttributeString);
                     }
                 }

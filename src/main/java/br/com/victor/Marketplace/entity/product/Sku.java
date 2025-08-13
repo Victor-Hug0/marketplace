@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -30,15 +31,15 @@ public class Sku {
 
     @OneToMany(mappedBy = "sku",   cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<SkuAttributeDecimal> skuAttributesDecimal;
+    private List<SkuAttributeDecimal> skuAttributesDecimal = new ArrayList<>();
 
     @OneToMany(mappedBy = "sku",   cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<SkuAttributeInteger> skuAttributesInteger;
+    private List<SkuAttributeInteger> skuAttributesInteger = new ArrayList<>();
 
     @OneToMany(mappedBy = "sku",   cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<SkuAttributeString>  skuAttributesString;
+    private List<SkuAttributeString>  skuAttributesString = new ArrayList<>();
 
     public Sku() {}
 
