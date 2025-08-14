@@ -1,6 +1,8 @@
 package br.com.victor.Marketplace.controller;
 
+import br.com.victor.Marketplace.dto.CreateStoreOwnerLegalPersonRequestDTO;
 import br.com.victor.Marketplace.dto.CreateStoreOwnerNaturalPersonRequestDTO;
+import br.com.victor.Marketplace.dto.StoreOwnerLegalPersonResponseDTO;
 import br.com.victor.Marketplace.dto.StoreOwnerNaturalPersonResponseDTO;
 import br.com.victor.Marketplace.service.StoreOwnerService;
 import jakarta.validation.Valid;
@@ -27,6 +29,15 @@ public class StoreOwnerController {
     public ResponseEntity<StoreOwnerNaturalPersonResponseDTO> createStoreOwnerNaturalPerson(@RequestBody @Valid CreateStoreOwnerNaturalPersonRequestDTO dto){
 
         StoreOwnerNaturalPersonResponseDTO responseDTO = storeOwnerService.createStoreOwnerNaturalPerson(dto);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(responseDTO.id()).toUri();
+
+        return ResponseEntity.created(location).body(responseDTO);
+    }
+
+    @PostMapping("/createStoreOwnerLegalPerson")
+    public ResponseEntity<StoreOwnerLegalPersonResponseDTO> createStoreOwnerLegalPerson(@RequestBody @Valid CreateStoreOwnerLegalPersonRequestDTO dto) {
+        StoreOwnerLegalPersonResponseDTO responseDTO = storeOwnerService.createStoreOwnerLegalPerson(dto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(responseDTO.id()).toUri();
 

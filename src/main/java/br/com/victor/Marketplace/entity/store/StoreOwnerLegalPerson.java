@@ -22,8 +22,8 @@ public class StoreOwnerLegalPerson extends StoreOwner {
     @Column(name = "company_registration_number",  nullable = false,  unique = true)
     private String companyRegistrationNumber;
 
-    public StoreOwnerLegalPerson(String email, String password, String phoneNumber, Gender gender, Address address, String companyName, String fantasyName, String companyRegistrationNumber) {
-        super(email, password, phoneNumber, gender, address);
+    public StoreOwnerLegalPerson(String email, String password, String phoneNumber, Address address, String companyName, String fantasyName, String companyRegistrationNumber) {
+        super(email, password, phoneNumber, address);
         this.companyName = companyName;
         this.fantasyName = fantasyName;
         this.companyRegistrationNumber = companyRegistrationNumber;

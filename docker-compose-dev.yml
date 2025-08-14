@@ -6,9 +6,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=${DB_DEV_USER}
-      - POSTGRES_PASSWORD=${DB_DEV_PASS}
-      - POSTGRES_DB=${DB_DEV_NAME}
+      - POSTGRES_USER=${DB_DEV_USER:postgres}
+      - POSTGRES_PASSWORD=${DB_DEV_PASS:postgres}
+      - POSTGRES_DB=${DB_DEV_NAME:marketplace_db_dev}
     volumes:
       - pg_marketplace_dev_data:/var/lib/postgresql/data
 

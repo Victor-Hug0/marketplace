@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -50,6 +52,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(FantasyNameAlreadyExistsException.class)
     public ResponseEntity<ErrorResponseDTO> handleFantasyNameAlreadyExistsExeption(FantasyNameAlreadyExistsException e, HttpServletRequest request) {
         ErrorResponseDTO errorResponseDTO = new  ErrorResponseDTO(HttpStatus.CONFLICT.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity<Map<String, Object>> handleValidationException(ValidationException e, HttpServletRequest request) {
+        Map<String, Object> errorResponseDTO = Map.of(
+                "status", HttpStatus.CONFLICT.value(),
+                "errors", e.getErrors(),
+                "path", request.getRequestURI(),
+                "timestamp", LocalDateTime.now()
+        );
+
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.CONFLICT);
     }
 }
