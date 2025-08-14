@@ -14,6 +14,8 @@ import br.com.victor.Marketplace.repository.ProductRepository;
 import br.com.victor.Marketplace.repository.StoreRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -85,5 +87,20 @@ public class ProductService {
         Product savedProduct = productRepository.save(product);
 
         return ProductResponseDTO.entityFromDTO(savedProduct);
+    }
+
+    public ProductResponseDTO getProductById(Long id) {
+        Product product = productRepository.findById(Math.toIntExact(id))
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
+
+        return ProductResponseDTO.entityFromDTO(product);
+    }
+
+    public Page<ProductResponseDTO> getAllProducts(Pageable pageable) {
+        return productRepository.findAll(pageable).map(ProductResponseDTO::entityFromDTO);
+    }
+
+    public Page<ProductResponseDTO> getAllStoreProductsByStoreId(Pageable pageable, Long storeId) {
+        return productRepository.getProductsByStoreId(pageable, storeId).map(ProductResponseDTO::entityFromDTO);
     }
 }
