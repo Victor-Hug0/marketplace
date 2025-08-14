@@ -27,10 +27,6 @@ public class StoreOwner {
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
-
     @Column(name = "store_owner_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private StoreOwnerType storeOwnerType;
@@ -49,11 +45,10 @@ public class StoreOwner {
     @Column(name = "updated_at",  nullable = false)
     private LocalDateTime updatedAt;
 
-    public StoreOwner(String email, String password, String phoneNumber, Gender gender, Address address) {
+    public StoreOwner(String email, String password, String phoneNumber, Address address) {
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.gender = gender;
         this.address = address;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
@@ -95,14 +90,6 @@ public class StoreOwner {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
     }
 
     public StoreOwnerType getStoreOwnerType() {

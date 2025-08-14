@@ -21,14 +21,19 @@ public class StoreOwnerNaturalPerson extends StoreOwner{
     @Column(nullable = false,  unique = true)
     private String ssn;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    public StoreOwnerNaturalPerson(String email, String password, String phoneNumber, Gender gender, Address address, String firstName, String lastName, String ssn, LocalDate birthDate) {
-        super(email, password, phoneNumber, gender, address);
+    public StoreOwnerNaturalPerson(String email, String password, String phoneNumber, Address address, String firstName, String lastName, String ssn, Gender gender, LocalDate birthDate) {
+        super(email, password, phoneNumber, address);
         this.firstName = firstName;
         this.lastName = lastName;
         this.ssn = ssn;
+        this.gender = gender;
         this.birthDate = birthDate;
         this.setStoreOwnerType(StoreOwnerType.NATURAL_PERSON);
     }
@@ -65,5 +70,13 @@ public class StoreOwnerNaturalPerson extends StoreOwner{
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }

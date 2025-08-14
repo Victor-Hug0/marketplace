@@ -57,11 +57,11 @@ public class StoreOwnerService {
                 dto.email(),
                 dto.password(),
                 dto.phoneNumber(),
-                dto.gender(),
                 address,
                 dto.firstName(),
                 dto.lastName(),
                 dto.ssn(),
+                dto.gender(),
                 dto.birthDate()
         );
 
