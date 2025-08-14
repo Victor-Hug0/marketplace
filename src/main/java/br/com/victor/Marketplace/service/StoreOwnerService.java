@@ -47,16 +47,22 @@ public class StoreOwnerService {
                 dto.email()
         );
 
+        List<String> errors = new ArrayList<>();
+
         if  (!conflictsStoreOwnerList.isEmpty()) {
             for (StoreOwnerNaturalPerson conflictsStoreOwner : conflictsStoreOwnerList) {
                 if (conflictsStoreOwner.getSsn().equalsIgnoreCase(dto.ssn())) {
-                    throw new CpfAlreadyExistsException("Cpf already exists");
+                    errors.add("Email already exists: " + conflictsStoreOwner.getEmail());
                 }
 
                 if (conflictsStoreOwner.getEmail().equalsIgnoreCase(dto.email())) {
-                    throw new EmailAlreadyExistsException("Email already exists");
+                    errors.add("CPF already exists: " + conflictsStoreOwner.getEmail());
                 }
             }
+        }
+
+        if (!errors.isEmpty()) {
+            throw new ValidationException(errors);
         }
 
         Address address = addressService.createAddress(dto.address());
