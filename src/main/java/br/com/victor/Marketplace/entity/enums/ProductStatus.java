@@ -1,4 +1,4 @@
-package br.com.victor.Marketplace.entity.product;
+package br.com.victor.Marketplace.entity.enums;
 
 public enum ProductStatus {
     ACTIVE,

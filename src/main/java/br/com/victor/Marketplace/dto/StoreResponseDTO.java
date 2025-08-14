@@ -1,7 +1,7 @@
 package br.com.victor.Marketplace.dto;
 
 import br.com.victor.Marketplace.entity.store.Store;
-import br.com.victor.Marketplace.entity.store.StoreStatus;
+import br.com.victor.Marketplace.entity.enums.StoreStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

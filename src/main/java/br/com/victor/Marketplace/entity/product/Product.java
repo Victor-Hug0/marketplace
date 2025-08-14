@@ -1,5 +1,6 @@
 package br.com.victor.Marketplace.entity.product;
 
+import br.com.victor.Marketplace.entity.enums.ProductStatus;
 import br.com.victor.Marketplace.entity.store.Store;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

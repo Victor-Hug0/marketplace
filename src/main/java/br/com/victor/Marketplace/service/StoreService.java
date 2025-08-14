@@ -4,7 +4,7 @@ import br.com.victor.Marketplace.dto.CreateStoreRequestDTO;
 import br.com.victor.Marketplace.dto.StoreResponseDTO;
 import br.com.victor.Marketplace.entity.store.Store;
 import br.com.victor.Marketplace.entity.store.StoreOwner;
-import br.com.victor.Marketplace.entity.store.StoreStatus;
+import br.com.victor.Marketplace.entity.enums.StoreStatus;
 import br.com.victor.Marketplace.exception.*;
 import br.com.victor.Marketplace.repository.StoreOwnerNaturalPersonRepository;
 import br.com.victor.Marketplace.repository.StoreRepository;

@@ -1,7 +1,7 @@
 package br.com.victor.Marketplace.dto;
 
 import br.com.victor.Marketplace.entity.product.Product;
-import br.com.victor.Marketplace.entity.product.ProductStatus;
+import br.com.victor.Marketplace.entity.enums.ProductStatus;
 
 
 import java.time.LocalDateTime;
