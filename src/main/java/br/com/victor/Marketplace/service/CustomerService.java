@@ -62,9 +62,15 @@ public class CustomerService {
         return CustomerResponseDTO.entityFromDTO(customer);
     }
 
-    public CustomerResponseDTO getCustomerFromId(UUID id) {
+    public CustomerResponseDTO getCustomerResponseDTOFromId(UUID id) {
         Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Customer with id " + id + "not found."));
         return CustomerResponseDTO.entityFromDTO(customer);
+    }
+
+    public Customer getCustomerById(UUID id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+
+        return customer.orElseThrow(() -> new ResourceNotFoundException("Customer with id " + id + "not found."));
     }
 
     public Page<CustomerResponseDTO> getAllCustomers(Pageable pageable) {
