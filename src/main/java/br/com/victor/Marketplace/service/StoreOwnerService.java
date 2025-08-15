@@ -7,8 +7,6 @@ import br.com.victor.Marketplace.dto.StoreOwnerNaturalPersonResponseDTO;
 import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.entity.store.StoreOwnerLegalPerson;
 import br.com.victor.Marketplace.entity.store.StoreOwnerNaturalPerson;
-import br.com.victor.Marketplace.exception.CpfAlreadyExistsException;
-import br.com.victor.Marketplace.exception.EmailAlreadyExistsException;
 import br.com.victor.Marketplace.exception.InvalidPasswordException;
 import br.com.victor.Marketplace.exception.ValidationException;
 import br.com.victor.Marketplace.repository.StoreOwnerLegalPersonRepository;
