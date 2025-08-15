@@ -26,8 +26,8 @@ public class Category {
     @JsonBackReference
     private Category parentCategory;
 
-    @Column(name = "commission_rate")
-    private BigDecimal commissionRate;
+    @Column(name = "marketplace_fee_percentage")
+    private BigDecimal marketplaceFeePercentage;
 
     @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -79,11 +79,11 @@ public class Category {
     }
 
     public BigDecimal getCommissionRate() {
-        return commissionRate;
+        return marketplaceFeePercentage;
     }
 
-    public void setCommissionRate(BigDecimal commissionRate) {
-        this.commissionRate = commissionRate;
+    public void setCommissionRate(BigDecimal marketplaceFeePercentage) {
+        this.marketplaceFeePercentage = marketplaceFeePercentage;
     }
 
     public List<Product> getProducts() {
