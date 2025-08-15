@@ -37,5 +37,7 @@ public class OrderService {
         if (dto.orderItems().isEmpty()) {
             throw new EmptyOrderItemsException("Order items cannot be empty");
         }
+
+
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,9 @@ public class Category {
     @JoinColumn(name = "parent_id")
     @JsonBackReference
     private Category parentCategory;
+
+    @Column(name = "commission_rate")
+    private BigDecimal commissionRate;
 
     @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -72,5 +76,21 @@ public class Category {
 
     public void setSubcategories(List<Category> subcategories) {
         this.subcategories = subcategories;
+    }
+
+    public BigDecimal getCommissionRate() {
+        return commissionRate;
+    }
+
+    public void setCommissionRate(BigDecimal commissionRate) {
+        this.commissionRate = commissionRate;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
