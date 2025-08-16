@@ -21,13 +21,13 @@ public class Sku {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column(nullable = false)
-    private Integer stock;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     @JsonBackReference
     private Product product;
+
+    @OneToOne(mappedBy = "sku", cascade = CascadeType.ALL, orphanRemoval = true)
+    private SkuStock skuStock;
 
     @OneToMany(mappedBy = "sku",   cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -43,10 +43,9 @@ public class Sku {
 
     public Sku() {}
 
-    public Sku(String skuCode, BigDecimal price, Integer stock, Product product) {
+    public Sku(String skuCode, BigDecimal price, Product product) {
         this.skuCode = skuCode;
         this.price = price;
-        this.stock = stock;
         this.product = product;
     }
 
@@ -74,20 +73,20 @@ public class Sku {
         this.skuCode = skuCode;
     }
 
+    public SkuStock getSkuStock() {
+        return skuStock;
+    }
+
+    public void setSkuStock(SkuStock skuStock) {
+        this.skuStock = skuStock;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
     }
 
     public Product getProduct() {

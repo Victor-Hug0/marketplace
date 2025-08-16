@@ -14,6 +14,7 @@ import br.com.victor.Marketplace.repository.StoreOwnerNaturalPersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ public class StoreOwnerService {
         this.addressService = addressService;
     }
 
+    @Transactional
     public StoreOwnerNaturalPersonResponseDTO createStoreOwnerNaturalPerson(CreateStoreOwnerNaturalPersonRequestDTO dto) {
 
         log.info(dto.toString());
@@ -82,6 +84,7 @@ public class StoreOwnerService {
         return StoreOwnerNaturalPersonResponseDTO.entityFromDTO(storeOwnerNaturalPerson);
     }
 
+    @Transactional
     public StoreOwnerLegalPersonResponseDTO createStoreOwnerLegalPerson(CreateStoreOwnerLegalPersonRequestDTO dto) {
 
         if (!dto.password().equals(dto.passwordConfirmation())) {

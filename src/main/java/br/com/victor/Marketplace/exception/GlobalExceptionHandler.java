@@ -66,4 +66,22 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(EmptyOrderItemsException.class)
+    public ResponseEntity<ErrorResponseDTO> handleEmptyOrderItemsException(EmptyOrderItemsException e, HttpServletRequest request) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.UNPROCESSABLE_ENTITY.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(ShippingAddressMissingInfoException.class)
+    public ResponseEntity<ErrorResponseDTO> handleShippingAddressMissingInfoException(ShippingAddressMissingInfoException e, HttpServletRequest request) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.BAD_REQUEST.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InsufficientStockException.class)
+    public ResponseEntity<ErrorResponseDTO> handleInsufficientStockException(InsufficientStockException e, HttpServletRequest request) {
+        ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.UNPROCESSABLE_ENTITY.value(), e.getMessage(), request.getRequestURI(), LocalDateTime.now());
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
 }

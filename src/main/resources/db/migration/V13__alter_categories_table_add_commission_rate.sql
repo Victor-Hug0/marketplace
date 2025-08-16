@@ -1,0 +1,1 @@
+ALTER TABLE categories ADD COLUMN marketplace_fee_percentage DECIMAL(5, 2) NULL;

@@ -8,10 +8,7 @@ import br.com.victor.Marketplace.entity.enums.AttributeType;
 import br.com.victor.Marketplace.entity.product.*;
 import br.com.victor.Marketplace.entity.store.Store;
 import br.com.victor.Marketplace.exception.ResourceNotFoundException;
-import br.com.victor.Marketplace.repository.CategoryRepository;
-import br.com.victor.Marketplace.repository.ProductBrandRepository;
-import br.com.victor.Marketplace.repository.ProductRepository;
-import br.com.victor.Marketplace.repository.StoreRepository;
+import br.com.victor.Marketplace.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -31,15 +28,21 @@ public class ProductService {
     private final StoreRepository storeRepository;
     private final ProductBrandRepository productBrandRepository;
     private final CategoryRepository  categoryRepository;
+    private final SkuStockRepository skuStockRepository;
+    private final SkuRepository skuRepository;
 
     public ProductService(ProductRepository productRepository,
                           StoreRepository storeRepository,
                           ProductBrandRepository productBrandRepository,
-                          CategoryRepository  categoryRepository) {
+                          CategoryRepository  categoryRepository,
+                          SkuStockRepository skuStockRepository,
+                          SkuRepository skuRepository) {
         this.productRepository = productRepository;
         this.storeRepository = storeRepository;
         this.productBrandRepository = productBrandRepository;
         this.categoryRepository = categoryRepository;
+        this.skuStockRepository = skuStockRepository;
+        this.skuRepository = skuRepository;
     }
 
     @Transactional
@@ -60,8 +63,12 @@ public class ProductService {
         Product product = new Product(dto.name(), dto.description(), store, productBrand, categories, LocalDateTime.now(), LocalDateTime.now());
 
         for (CreateSkuRequestDTO skuRequestDTO : dto.skus()) {
-            Sku sku = new Sku(skuRequestDTO.skuCode(), skuRequestDTO.price(), skuRequestDTO.stock(), product);
+            Sku sku = new Sku(skuRequestDTO.skuCode(), skuRequestDTO.price(), product);
+
             product.addSku(sku);
+
+            SkuStock skuStock = new SkuStock(skuRequestDTO.stock(), sku, store);
+            sku.setSkuStock(skuStock);
 
             for (CreateAttributeRequestDTO attributeRequestDTO : skuRequestDTO.attributes()) {
                 switch (attributeRequestDTO.type()) {

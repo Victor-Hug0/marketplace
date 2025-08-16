@@ -1,9 +1,6 @@
 package br.com.victor.Marketplace.dto;
 
-import br.com.victor.Marketplace.entity.product.Sku;
-import br.com.victor.Marketplace.entity.product.SkuAttributeDecimal;
-import br.com.victor.Marketplace.entity.product.SkuAttributeInteger;
-import br.com.victor.Marketplace.entity.product.SkuAttributeString;
+import br.com.victor.Marketplace.entity.product.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,18 +9,21 @@ public record SkuResponseDTO(
         Long id,
         String skuCode,
         BigDecimal price,
-        Integer stock,
+        Integer avaliableQuantity,
         List<SkuAttributeDecimal> decimalAttributes,
         List<SkuAttributeInteger> integerAttributes,
         List<SkuAttributeString> stringAttributes
 ) {
 
     public static SkuResponseDTO entityFromDTO(Sku sku) {
+
+        Integer availableQuantity = (sku.getSkuStock() != null ? sku.getSkuStock().getAvailableQuantity() : null);
+
         return new SkuResponseDTO(
                 sku.getId(),
                 sku.getSkuCode(),
                 sku.getPrice(),
-                sku.getStock(),
+                availableQuantity,
                 sku.getSkuAttributesDecimal(),
                 sku.getSkuAttributesInteger(),
                 sku.getSkuAttributesString()

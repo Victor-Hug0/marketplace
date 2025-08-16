@@ -86,4 +86,9 @@ public class StoreService {
     public Page<StoreResponseDTO> getAllStores(Pageable pageable) {
         return storeRepository.findAll(pageable).map(StoreResponseDTO::entityFromDTO);
     }
+
+    public Store getStoreBySkuId(Long skuId) {
+        return storeRepository.findBySkuId(skuId)
+                .orElseThrow(() -> new ResourceNotFoundException("Store not found through of skuId: " + skuId));
+    }
 }

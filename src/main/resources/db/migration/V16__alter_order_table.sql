@@ -1,0 +1,1 @@
+ALTER TABLE orders ADD COLUMN marketplace_fee_total DECIMAL(10, 2) NOT NULL DEFAULT 0;
