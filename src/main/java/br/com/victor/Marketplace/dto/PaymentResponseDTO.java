@@ -2,6 +2,7 @@ package br.com.victor.Marketplace.dto;
 
 import br.com.victor.Marketplace.entity.enums.PayamentMethod;
 import br.com.victor.Marketplace.entity.enums.PaymentStatus;
+import br.com.victor.Marketplace.entity.order.OrderPayment;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,4 +16,15 @@ public record PaymentResponseDTO(
         PaymentStatus paymentStatus,
         LocalDateTime processedAt
 ) {
+
+    public static PaymentResponseDTO entityFromDTO(OrderPayment orderPayment) {
+        return new PaymentResponseDTO(
+                orderPayment.getId(),
+                orderPayment.getAmount(),
+                orderPayment.getInstallments(),
+                orderPayment.getPayamentMethod(),
+                orderPayment.getPaymentStatus(),
+                orderPayment.getProcessedAt()
+        );
+    }
 }

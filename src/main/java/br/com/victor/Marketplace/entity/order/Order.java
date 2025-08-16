@@ -33,6 +33,9 @@ public class Order {
     @Column(name = "tax_amount", nullable = false)
     private BigDecimal taxAmount;
 
+    @Column(name = "marketplace_fee_total", nullable = false)
+    private BigDecimal marketplaceFeeTotal;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<OrderItem> orderItems = new ArrayList<>();
@@ -47,13 +50,13 @@ public class Order {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public Order(Customer customer, Shipping shipping, BigDecimal totalItensAmount, BigDecimal taxAmount, List<OrderItem> orderItems, List<OrderPayment> payments) {
+    public Order(Customer customer, Shipping shipping, BigDecimal totalItensAmount, BigDecimal taxAmount, List<OrderItem> orderItems, BigDecimal marketplaceFeeTotal) {
         this.customer = customer;
         this.shipping = shipping;
         this.totalItensAmount = totalItensAmount;
         this.taxAmount = taxAmount;
         this.orderItems = orderItems;
-        this.payments = payments;
+        this.marketplaceFeeTotal = marketplaceFeeTotal;
         this.orderDate = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
@@ -78,6 +81,14 @@ public class Order {
 
     public void setShipping(Shipping shipping) {
         this.shipping = shipping;
+    }
+
+    public BigDecimal getMarketplaceFeeTotal() {
+        return marketplaceFeeTotal;
+    }
+
+    public void setMarketplaceFeeTotal(BigDecimal marketplaceFeeTotal) {
+        this.marketplaceFeeTotal = marketplaceFeeTotal;
     }
 
     public BigDecimal getTotalItensAmount() {

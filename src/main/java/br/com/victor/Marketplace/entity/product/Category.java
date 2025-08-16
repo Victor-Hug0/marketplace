@@ -78,11 +78,11 @@ public class Category {
         this.subcategories = subcategories;
     }
 
-    public BigDecimal getCommissionRate() {
+    public BigDecimal getMarketplaceFeePercentage() {
         return marketplaceFeePercentage;
     }
 
-    public void setCommissionRate(BigDecimal marketplaceFeePercentage) {
+    public void setMarketplaceFeePercentage(BigDecimal marketplaceFeePercentage) {
         this.marketplaceFeePercentage = marketplaceFeePercentage;
     }
 

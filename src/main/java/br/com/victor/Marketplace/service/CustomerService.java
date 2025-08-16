@@ -68,9 +68,7 @@ public class CustomerService {
     }
 
     public Customer getCustomerById(UUID id) {
-        Optional<Customer> customer = customerRepository.findById(id);
-
-        return customer.orElseThrow(() -> new ResourceNotFoundException("Customer with id " + id + "not found."));
+        return customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Customer with id " + id + "not found."));
     }
 
     public Page<CustomerResponseDTO> getAllCustomers(Pageable pageable) {

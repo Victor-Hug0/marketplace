@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "order_payment")
+@Table(name = "order_payments")
 public class OrderPayment {
 
     @Id @GeneratedValue(strategy = GenerationType.UUID)
