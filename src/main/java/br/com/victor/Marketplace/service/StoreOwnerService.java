@@ -65,7 +65,7 @@ public class StoreOwnerService {
             throw new ValidationException(errors);
         }
 
-        Address address = addressService.createAddress(dto.address());
+        Address address = addressService.createAddressByZipCodeWithExternalAPI(dto.address());
 
         StoreOwnerNaturalPerson storeOwnerNaturalPerson = new StoreOwnerNaturalPerson(
                 dto.email(),
@@ -121,7 +121,7 @@ public class StoreOwnerService {
             throw new ValidationException(errors);
         }
 
-        Address address = addressService.createAddress(dto.address());
+        Address address = addressService.createAddressByZipCodeWithExternalAPI(dto.address());
 
         StoreOwnerLegalPerson storeOwnerLegalPerson = new StoreOwnerLegalPerson(
                 dto.email(),

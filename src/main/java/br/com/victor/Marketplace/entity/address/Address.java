@@ -20,14 +20,17 @@ public class Address {
     private String complement;
     @Column(nullable = false)
     private String number;
+    @Column(nullable = false)
+    private String region;
 
-    public Address(String zipCode, String state, String city, String neighborhood, String street, String number) {
+    public Address(String zipCode, String state, String city, String neighborhood, String street, String number, String region) {
         this.zipCode = zipCode;
         this.state = state;
         this.city = city;
         this.neighborhood = neighborhood;
         this.street = street;
         this.number = number;
+        this.region = region;
     }
 
     public Address() {}
@@ -42,6 +45,14 @@ public class Address {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getState() {

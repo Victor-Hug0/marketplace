@@ -25,6 +25,6 @@ public record CreateStoreOwnerLegalPersonRequestDTO(
         @Size(min = 11, max = 11, message = "Field phone must be 11 numbers, including DDD.")
         String phoneNumber,
         @NotNull(message = "Field address cannot be null.")
-        CreateAddressRequestDTO address
+        CreateAddressViaCepRequestDTO address
 ) {
 }

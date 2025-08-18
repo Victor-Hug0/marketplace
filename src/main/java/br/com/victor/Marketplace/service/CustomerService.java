@@ -1,6 +1,7 @@
 package br.com.victor.Marketplace.service;
 
 import br.com.victor.Marketplace.dto.CreateAddressRequestDTO;
+import br.com.victor.Marketplace.dto.CreateAddressViaCepRequestDTO;
 import br.com.victor.Marketplace.dto.CreateCustomerRequestDTO;
 import br.com.victor.Marketplace.dto.CustomerResponseDTO;
 import br.com.victor.Marketplace.entity.address.Address;
@@ -84,14 +85,14 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
-    public CustomerResponseDTO createCustomerAddress(CreateAddressRequestDTO dto, UUID id) {
+    public CustomerResponseDTO createCustomerAddress(CreateAddressViaCepRequestDTO dto, UUID id) {
         Optional<Customer> customer = customerRepository.findById(id);
 
         if (customer.isEmpty()) {
             throw new ResourceNotFoundException("Customer with id " + id + " not found.");
         }
 
-        Address address = addressService.createAddress(dto);
+        Address address = addressService.createAddressByZipCodeWithExternalAPI(dto);
         customerAddressesService.createCustomerAddresses(customer.get(), address);
 
         return CustomerResponseDTO.entityFromDTO(customer.get());

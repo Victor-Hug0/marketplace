@@ -29,6 +29,21 @@ public class Sku {
     @OneToOne(mappedBy = "sku", cascade = CascadeType.ALL, orphanRemoval = true)
     private SkuStock skuStock;
 
+    @Column(nullable = false)
+    private String color;
+
+    @Column(nullable = false)
+    private Integer width;
+
+    @Column(nullable = false)
+    private Integer height;
+
+    @Column(nullable = false)
+    private Integer length;
+
+    @Column(nullable = false)
+    private BigDecimal weight;
+
     @OneToMany(mappedBy = "sku",   cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<SkuAttributeDecimal> skuAttributesDecimal = new ArrayList<>();
@@ -43,10 +58,15 @@ public class Sku {
 
     public Sku() {}
 
-    public Sku(String skuCode, BigDecimal price, Product product) {
+    public Sku(String skuCode, BigDecimal price, Product product, String color, Integer width, Integer height, Integer length, BigDecimal weight) {
         this.skuCode = skuCode;
         this.price = price;
         this.product = product;
+        this.color = color;
+        this.width = width;
+        this.height = height;
+        this.length = length;
+        this.weight = weight;
     }
 
     public void addSkuAttributeDecimal(SkuAttributeDecimal skuAttributeDecimal) {
@@ -119,6 +139,46 @@ public class Sku {
 
     public void setSkuAttributesString(List<SkuAttributeString> skuAttributesString) {
         this.skuAttributesString = skuAttributesString;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public Integer getLength() {
+        return length;
+    }
+
+    public void setLength(Integer length) {
+        this.length = length;
+    }
+
+    public BigDecimal getWeight() {
+        return weight;
+    }
+
+    public void setWeight(BigDecimal weight) {
+        this.weight = weight;
     }
 
     public void addDecimalAttribute(SkuAttributeDecimal attribute) {

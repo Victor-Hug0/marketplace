@@ -29,6 +29,6 @@ public record CreateStoreOwnerNaturalPersonRequestDTO(
         @NotNull(message = "Field gender cannot be null.")
         Gender gender,
         @NotNull(message = "Field address cannot be null.")
-        CreateAddressRequestDTO address
+        CreateAddressViaCepRequestDTO address
         ) {
 }

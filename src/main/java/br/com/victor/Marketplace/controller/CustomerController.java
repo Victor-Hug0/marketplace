@@ -1,6 +1,7 @@
 package br.com.victor.Marketplace.controller;
 
 import br.com.victor.Marketplace.dto.CreateAddressRequestDTO;
+import br.com.victor.Marketplace.dto.CreateAddressViaCepRequestDTO;
 import br.com.victor.Marketplace.dto.CreateCustomerRequestDTO;
 import br.com.victor.Marketplace.dto.CustomerResponseDTO;
 import br.com.victor.Marketplace.service.CustomerService;
@@ -48,7 +49,7 @@ public class CustomerController {
     }
 
     @PostMapping("/{id}/vinculateAddress")
-    public ResponseEntity<CustomerResponseDTO> vinculateAddressToCustomer(@PathVariable(name = "id") UUID id, @RequestBody CreateAddressRequestDTO dto) {
+    public ResponseEntity<CustomerResponseDTO> vinculateAddressToCustomer(@PathVariable(name = "id") UUID id, @RequestBody CreateAddressViaCepRequestDTO dto) {
         CustomerResponseDTO responseDTO = customerService.createCustomerAddress(dto, id);
         return ResponseEntity.ok(responseDTO);
     }

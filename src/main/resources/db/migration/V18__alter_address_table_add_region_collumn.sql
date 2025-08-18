@@ -1,0 +1,1 @@
+ALTER TABLE address ADD COLUMN region VARCHAR(20) NOT NULL DEFAULT 'Sudeste';

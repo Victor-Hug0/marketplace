@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record ShippingAddressRequestDTO(
         Long existentAddressId,
-        CreateAddressRequestDTO newAddress,
+        CreateAddressViaCepRequestDTO newAddress,
         @NotNull(message = "Field saveNewAddressForFutureUse can't be null!")
         Boolean saveNewAddressForFutureUse
 ) {

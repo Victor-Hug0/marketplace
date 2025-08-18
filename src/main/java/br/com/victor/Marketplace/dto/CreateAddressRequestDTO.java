@@ -10,6 +10,7 @@ public record CreateAddressRequestDTO(
         String neighborhood,
         String street,
         String complement,
-        String number
+        String number,
+        String region
 ) {
 }
