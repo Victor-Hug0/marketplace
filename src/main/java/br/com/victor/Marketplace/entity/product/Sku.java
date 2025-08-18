@@ -1,5 +1,6 @@
 package br.com.victor.Marketplace.entity.product;
 
+import br.com.victor.Marketplace.entity.enums.SkuColor;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -30,7 +31,8 @@ public class Sku {
     private SkuStock skuStock;
 
     @Column(nullable = false)
-    private String color;
+    @Enumerated(EnumType.STRING)
+    private SkuColor color;
 
     @Column(nullable = false)
     private Integer width;
@@ -58,7 +60,7 @@ public class Sku {
 
     public Sku() {}
 
-    public Sku(String skuCode, BigDecimal price, Product product, String color, Integer width, Integer height, Integer length, BigDecimal weight) {
+    public Sku(String skuCode, BigDecimal price, Product product, SkuColor color, Integer width, Integer height, Integer length, BigDecimal weight) {
         this.skuCode = skuCode;
         this.price = price;
         this.product = product;
@@ -141,11 +143,11 @@ public class Sku {
         this.skuAttributesString = skuAttributesString;
     }
 
-    public String getColor() {
+    public SkuColor getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(SkuColor color) {
         this.color = color;
     }
 

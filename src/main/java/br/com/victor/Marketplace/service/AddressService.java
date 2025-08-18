@@ -6,8 +6,6 @@ import br.com.victor.Marketplace.entity.customer.Customer;
 import br.com.victor.Marketplace.exception.ResourceNotFoundException;
 import br.com.victor.Marketplace.exception.ShippingAddressMissingInfoException;
 import br.com.victor.Marketplace.repository.AddressRepository;
-import jakarta.transaction.Transactional;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -20,20 +18,13 @@ public class AddressService {
     private final AddressRepository addressRepository;
     private final CustomerAddressesService customerAddressesService;
     private final RestClient.Builder restClientBuilder;
+    private final AddressPersistenceService addressPersistenceService;
 
-    public AddressService(AddressRepository addressRepository, CustomerAddressesService customerAddressesService, RestClient.Builder restClientBuilder) {
+    public AddressService(AddressRepository addressRepository, CustomerAddressesService customerAddressesService, RestClient.Builder restClientBuilder, AddressPersistenceService addressPersistenceService) {
         this.addressRepository = addressRepository;
         this.customerAddressesService = customerAddressesService;
         this.restClientBuilder = restClientBuilder;
-    }
-
-    @Transactional
-    public Address createAddress(CreateAddressRequestDTO addressRequestDTO) {
-        Address address = instantiateAddress(addressRequestDTO);
-
-        addressRepository.save(address);
-
-        return address;
+        this.addressPersistenceService = addressPersistenceService;
     }
 
     public List<Address> findByCustomerId(UUID customerId) {
@@ -51,11 +42,10 @@ public class AddressService {
         }
 
         if (dto.newAddress() != null) {
-            Address newAddress = instantiateAddress(dto.newAddress());
+            Address newAddress = createAddress(dto.newAddress());
 
             if (dto.saveNewAddressForFutureUse().equals(Boolean.TRUE)) {
                 customerAddressesService.createCustomerAddresses(customer, newAddress);
-                addressRepository.save(newAddress);
             }
 
             return newAddress;
@@ -64,59 +54,26 @@ public class AddressService {
         throw new ShippingAddressMissingInfoException("Address information is missing. Provide either an existing address ID or new address data.");
     }
 
-    private Address instantiateAddress(CreateAddressRequestDTO dto) {
-        Address address = new Address(
-                dto.zipCode(),
-                dto.state(),
-                dto.city(),
-                dto.neighborhood(),
-                dto.street(),
-                dto.number(),
-                dto.region()
-        );
-
-        if (dto.complement() != null) {
-            address.setComplement(dto.complement());
-        }
-
-        return address;
+    public Address createAddress(CreateAddressViaCepRequestDTO dto) {
+        AddessViaCepResponseDTO addessViaCepResponseDTO = fetchAddressFromViaCep(dto.zipCode());
+        return addressPersistenceService.saveNewAddress(dto, addessViaCepResponseDTO);
     }
 
-    public Address createAddressByZipCodeWithExternalAPI(CreateAddressViaCepRequestDTO dto) {
+    private AddessViaCepResponseDTO fetchAddressFromViaCep(String zipCode) {
         RestClient restClient = restClientBuilder.baseUrl("https://viacep.com.br/ws/").build();
-
-        String zipCode = dto.zipCode();
-
         try {
-            AddessViaCepResponseDTO addessViaCepResponseDTO = restClient.get()
+            AddessViaCepResponseDTO response = restClient.get()
                     .uri(zipCode + "/json/")
-                    .header("Accept", "application/json")
                     .retrieve()
                     .body(AddessViaCepResponseDTO.class);
 
-            if (addessViaCepResponseDTO == null || addessViaCepResponseDTO.estado() == null) {
-                throw new ResourceNotFoundException("Address not found with zip code " + zipCode);
+            if (response == null || response.estado() == null) {
+                throw new ResourceNotFoundException("Endereço não encontrado para o CEP: " + zipCode);
             }
-
-            Address address = new Address(
-                    dto.zipCode(),
-                    addessViaCepResponseDTO.estado(),
-                    addessViaCepResponseDTO.localidade(),
-                    addessViaCepResponseDTO.bairro(),
-                    addessViaCepResponseDTO.logradouro(),
-                    dto.number(),
-                    addessViaCepResponseDTO.regiao()
-            );
-
-            if (dto.complement() != null) {
-                address.setComplement(dto.complement());
-            }
-
-            addressRepository.save(address);
-
-            return address;
+            return response;
         } catch (Exception e) {
-            throw new RuntimeException("Error to call ViaCep API: " + e);
+            throw new RuntimeException("Erro ao chamar a API ViaCep: " + e.getMessage(), e);
         }
     }
+
 }

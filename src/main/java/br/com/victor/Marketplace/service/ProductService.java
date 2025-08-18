@@ -63,7 +63,7 @@ public class ProductService {
         Product product = new Product(dto.name(), dto.description(), store, productBrand, categories, LocalDateTime.now(), LocalDateTime.now());
 
         for (CreateSkuRequestDTO skuRequestDTO : dto.skus()) {
-            Sku sku = new Sku(skuRequestDTO.skuCode(), skuRequestDTO.price(), product, "black", 1, 1, 1, BigDecimal.ZERO);
+            Sku sku = new Sku(skuRequestDTO.skuCode(), skuRequestDTO.price(), product, skuRequestDTO.color(), skuRequestDTO.width(), skuRequestDTO.height(), skuRequestDTO.length(), skuRequestDTO.weight());
 
             product.addSku(sku);
 

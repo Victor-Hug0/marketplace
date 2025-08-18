@@ -25,7 +25,7 @@ public class AddressController {
     @PostMapping("/create")
     public ResponseEntity<Address> createAddress(@RequestBody CreateAddressViaCepRequestDTO dto) {
 
-        Address address = addressService.createAddressByZipCodeWithExternalAPI(dto);
+        Address address = addressService.createAddress(dto);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(address.getId()).toUri();
 
