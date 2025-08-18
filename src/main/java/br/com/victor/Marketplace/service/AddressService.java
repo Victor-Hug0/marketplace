@@ -68,7 +68,7 @@ public class AddressService {
                     .body(AddessViaCepResponseDTO.class);
 
             if (response == null || response.estado() == null) {
-                throw new ResourceNotFoundException("Endereço não encontrado para o CEP: " + zipCode);
+                throw new ResourceNotFoundException("Address not found with zip code: " + zipCode);
             }
             return response;
         } catch (Exception e) {
