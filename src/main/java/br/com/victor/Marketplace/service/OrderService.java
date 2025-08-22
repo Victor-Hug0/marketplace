@@ -102,13 +102,15 @@ public class OrderService {
 
         Order order = new Order(customer, shipping, totalItemsAmount, totalTaxAmount, orderItems, totalMarketPlaceFee);
 
+        Order savedOrder = orderRepository.save(order);
+
         orderItems.forEach(orderItem -> {
-            orderItem.setOrder(order);
+            orderItem.setOrder(savedOrder);
         });
 
-        OrderPayment orderPayment = new OrderPayment(amount, installments, order, payamentMethod, PaymentStatus.PENDING);
+        OrderPayment orderPayment = new OrderPayment(amount, installments, savedOrder, payamentMethod, PaymentStatus.PENDING);
 
-        order.getPayments().add(orderPayment);
+        savedOrder.getPayments().add(orderPayment);
 
         orderPaymentService.save(orderPayment);
 
