@@ -1,6 +1,6 @@
 package br.com.victor.Marketplace.controller;
 
-import br.com.victor.Marketplace.dto.CreateAddressViaCepRequestDTO;
+import br.com.victor.Marketplace.dto.address.CreateAddressViaCepRequestDTO;
 import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.service.AddressService;
 import org.springframework.http.ResponseEntity;

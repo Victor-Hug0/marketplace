@@ -1,8 +1,8 @@
 package br.com.victor.Marketplace.service;
 
-import br.com.victor.Marketplace.dto.CreateOrderItemRequestDTO;
-import br.com.victor.Marketplace.dto.CreateOrderRequestDTO;
-import br.com.victor.Marketplace.dto.OrderResponseDTO;
+import br.com.victor.Marketplace.dto.orderItem.CreateOrderItemRequestDTO;
+import br.com.victor.Marketplace.dto.order.CreateOrderRequestDTO;
+import br.com.victor.Marketplace.dto.order.OrderResponseDTO;
 import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.entity.customer.Customer;
 import br.com.victor.Marketplace.entity.enums.PayamentMethod;

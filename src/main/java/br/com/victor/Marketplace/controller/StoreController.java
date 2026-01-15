@@ -1,11 +1,10 @@
 package br.com.victor.Marketplace.controller;
 
-import br.com.victor.Marketplace.dto.CreateStoreRequestDTO;
-import br.com.victor.Marketplace.dto.StoreResponseDTO;
+import br.com.victor.Marketplace.dto.store.CreateStoreRequestDTO;
+import br.com.victor.Marketplace.dto.store.StoreResponseDTO;
 import br.com.victor.Marketplace.service.StoreService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;

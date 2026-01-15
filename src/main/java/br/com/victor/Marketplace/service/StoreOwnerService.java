@@ -1,9 +1,9 @@
 package br.com.victor.Marketplace.service;
 
-import br.com.victor.Marketplace.dto.CreateStoreOwnerLegalPersonRequestDTO;
-import br.com.victor.Marketplace.dto.CreateStoreOwnerNaturalPersonRequestDTO;
-import br.com.victor.Marketplace.dto.StoreOwnerLegalPersonResponseDTO;
-import br.com.victor.Marketplace.dto.StoreOwnerNaturalPersonResponseDTO;
+import br.com.victor.Marketplace.dto.storeOwner.CreateStoreOwnerLegalPersonRequestDTO;
+import br.com.victor.Marketplace.dto.storeOwner.CreateStoreOwnerNaturalPersonRequestDTO;
+import br.com.victor.Marketplace.dto.storeOwner.StoreOwnerLegalPersonResponseDTO;
+import br.com.victor.Marketplace.dto.storeOwner.StoreOwnerNaturalPersonResponseDTO;
 import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.entity.store.StoreOwnerLegalPerson;
 import br.com.victor.Marketplace.entity.store.StoreOwnerNaturalPerson;

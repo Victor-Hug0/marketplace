@@ -1,8 +1,8 @@
 package br.com.victor.Marketplace.service;
 
-import br.com.victor.Marketplace.dto.AddessViaCepResponseDTO;
-import br.com.victor.Marketplace.dto.CreateAddressRequestDTO;
-import br.com.victor.Marketplace.dto.CreateAddressViaCepRequestDTO;
+import br.com.victor.Marketplace.dto.address.AddessViaCepResponseDTO;
+import br.com.victor.Marketplace.dto.address.CreateAddressRequestDTO;
+import br.com.victor.Marketplace.dto.address.CreateAddressViaCepRequestDTO;
 import br.com.victor.Marketplace.entity.address.Address;
 import br.com.victor.Marketplace.repository.AddressRepository;
 import org.springframework.stereotype.Service;

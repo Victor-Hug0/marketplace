@@ -1,9 +1,9 @@
 package br.com.victor.Marketplace.controller;
 
-import br.com.victor.Marketplace.dto.CreateStoreOwnerLegalPersonRequestDTO;
-import br.com.victor.Marketplace.dto.CreateStoreOwnerNaturalPersonRequestDTO;
-import br.com.victor.Marketplace.dto.StoreOwnerLegalPersonResponseDTO;
-import br.com.victor.Marketplace.dto.StoreOwnerNaturalPersonResponseDTO;
+import br.com.victor.Marketplace.dto.storeOwner.CreateStoreOwnerLegalPersonRequestDTO;
+import br.com.victor.Marketplace.dto.storeOwner.CreateStoreOwnerNaturalPersonRequestDTO;
+import br.com.victor.Marketplace.dto.storeOwner.StoreOwnerLegalPersonResponseDTO;
+import br.com.victor.Marketplace.dto.storeOwner.StoreOwnerNaturalPersonResponseDTO;
 import br.com.victor.Marketplace.service.StoreOwnerService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

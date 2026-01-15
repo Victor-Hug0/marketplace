@@ -1,9 +1,8 @@
 package br.com.victor.Marketplace.controller;
 
-import br.com.victor.Marketplace.dto.CreateAddressRequestDTO;
-import br.com.victor.Marketplace.dto.CreateAddressViaCepRequestDTO;
-import br.com.victor.Marketplace.dto.CreateCustomerRequestDTO;
-import br.com.victor.Marketplace.dto.CustomerResponseDTO;
+import br.com.victor.Marketplace.dto.address.CreateAddressViaCepRequestDTO;
+import br.com.victor.Marketplace.dto.customer.CreateCustomerRequestDTO;
+import br.com.victor.Marketplace.dto.customer.CustomerResponseDTO;
 import br.com.victor.Marketplace.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;

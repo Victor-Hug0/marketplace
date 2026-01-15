@@ -1,9 +1,9 @@
 package br.com.victor.Marketplace.service;
 
-import br.com.victor.Marketplace.dto.CreateAttributeRequestDTO;
-import br.com.victor.Marketplace.dto.CreateProductRequestDTO;
-import br.com.victor.Marketplace.dto.CreateSkuRequestDTO;
-import br.com.victor.Marketplace.dto.ProductResponseDTO;
+import br.com.victor.Marketplace.dto.attribute.CreateAttributeRequestDTO;
+import br.com.victor.Marketplace.dto.product.CreateProductRequestDTO;
+import br.com.victor.Marketplace.dto.sku.CreateSkuRequestDTO;
+import br.com.victor.Marketplace.dto.product.ProductResponseDTO;
 import br.com.victor.Marketplace.entity.enums.AttributeType;
 import br.com.victor.Marketplace.entity.product.*;
 import br.com.victor.Marketplace.entity.store.Store;

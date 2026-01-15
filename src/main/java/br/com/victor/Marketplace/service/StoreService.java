@@ -1,7 +1,7 @@
 package br.com.victor.Marketplace.service;
 
-import br.com.victor.Marketplace.dto.CreateStoreRequestDTO;
-import br.com.victor.Marketplace.dto.StoreResponseDTO;
+import br.com.victor.Marketplace.dto.store.CreateStoreRequestDTO;
+import br.com.victor.Marketplace.dto.store.StoreResponseDTO;
 import br.com.victor.Marketplace.entity.store.Store;
 import br.com.victor.Marketplace.entity.store.StoreOwner;
 import br.com.victor.Marketplace.entity.enums.StoreStatus;

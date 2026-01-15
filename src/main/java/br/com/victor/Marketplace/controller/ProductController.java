@@ -1,7 +1,7 @@
 package br.com.victor.Marketplace.controller;
 
-import br.com.victor.Marketplace.dto.CreateProductRequestDTO;
-import br.com.victor.Marketplace.dto.ProductResponseDTO;
+import br.com.victor.Marketplace.dto.product.CreateProductRequestDTO;
+import br.com.victor.Marketplace.dto.product.ProductResponseDTO;
 import br.com.victor.Marketplace.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

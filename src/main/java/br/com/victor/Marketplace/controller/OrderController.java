@@ -1,7 +1,7 @@
 package br.com.victor.Marketplace.controller;
 
-import br.com.victor.Marketplace.dto.CreateOrderRequestDTO;
-import br.com.victor.Marketplace.dto.OrderResponseDTO;
+import br.com.victor.Marketplace.dto.order.CreateOrderRequestDTO;
+import br.com.victor.Marketplace.dto.order.OrderResponseDTO;
 import br.com.victor.Marketplace.service.OrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

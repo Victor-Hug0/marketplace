@@ -1,15 +1,13 @@
 package br.com.victor.Marketplace.service;
 
-import br.com.victor.Marketplace.dto.AdministratorResponseDTO;
-import br.com.victor.Marketplace.dto.CreateAdministratorRequestDTO;
+import br.com.victor.Marketplace.dto.administrator.AdministratorResponseDTO;
+import br.com.victor.Marketplace.dto.administrator.CreateAdministratorRequestDTO;
 import br.com.victor.Marketplace.entity.admin.AdminStatus;
 import br.com.victor.Marketplace.entity.admin.Administrator;
 import br.com.victor.Marketplace.exception.EmailAlreadyExistsException;
 import br.com.victor.Marketplace.exception.InvalidPasswordException;
 import br.com.victor.Marketplace.repository.AdministratorRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 @Service
 public class AdministratorService {
