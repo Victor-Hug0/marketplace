@@ -16,7 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/storeOwner")
+@RequestMapping("api/v1/storeOwners")
 public class StoreOwnerController {
 
     private final StoreOwnerService storeOwnerService;

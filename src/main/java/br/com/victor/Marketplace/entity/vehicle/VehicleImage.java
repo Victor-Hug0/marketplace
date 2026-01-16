@@ -1,4 +1,4 @@
-package br.com.victor.Marketplace.entity.carrier;
+package br.com.victor.Marketplace.entity.vehicle;
 
 import br.com.victor.Marketplace.entity.enums.MimeType;
 import jakarta.persistence.*;

@@ -1,8 +1,9 @@
-package br.com.victor.Marketplace.entity.carrier;
+package br.com.victor.Marketplace.entity.vehicle;
 
+import br.com.victor.Marketplace.entity.carrier.Carrier;
 import br.com.victor.Marketplace.entity.enums.FuelType;
 import br.com.victor.Marketplace.entity.enums.VehicleStatus;
-import br.com.victor.Marketplace.entity.enums.VehicleType;
+import br.com.victor.Marketplace.entity.enums.VehicleTypeEnum;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -43,7 +44,7 @@ public class Vehicle {
 
     @Column(name = "vehicle_type", nullable = false)
     @Enumerated(EnumType.STRING)
-    private VehicleType vehicleType;
+    private VehicleTypeEnum vehicleTypeEnum;
 
     @Column(name = "load_capacity", nullable = false)
     private Integer loadCapacity;
@@ -97,7 +98,7 @@ public class Vehicle {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public Vehicle(String model, String manufacturer, String plateNumber, String renavam, String color, String chassis, Integer year, Carrier carrier, VehicleType vehicleType, Integer loadCapacity, Integer volumetricCapacity, Integer totalGrossWeight, Integer length, Integer height, Integer width, FuelType fuelType, VehicleStatus vehicleStatus, String crlv, LocalDate licenseExpirationDate, List<VehicleImage> images) {
+    public Vehicle(String model, String manufacturer, String plateNumber, String renavam, String color, String chassis, Integer year, Carrier carrier, VehicleTypeEnum vehicleTypeEnum, Integer loadCapacity, Integer volumetricCapacity, Integer totalGrossWeight, Integer length, Integer height, Integer width, FuelType fuelType, VehicleStatus vehicleStatus, String crlv, LocalDate licenseExpirationDate, List<VehicleImage> images) {
         this.model = model;
         this.manufacturer = manufacturer;
         this.plateNumber = plateNumber;
@@ -106,7 +107,7 @@ public class Vehicle {
         this.chassis = chassis;
         this.year = year;
         this.carrier = carrier;
-        this.vehicleType = vehicleType;
+        this.vehicleTypeEnum = vehicleTypeEnum;
         this.loadCapacity = loadCapacity;
         this.volumetricCapacity = volumetricCapacity;
         this.totalGrossWeight = totalGrossWeight;

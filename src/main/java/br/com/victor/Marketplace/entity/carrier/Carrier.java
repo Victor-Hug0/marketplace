@@ -1,6 +1,7 @@
 package br.com.victor.Marketplace.entity.carrier;
 
 import br.com.victor.Marketplace.entity.enums.CarrierStatus;
+import br.com.victor.Marketplace.entity.vehicle.Vehicle;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 

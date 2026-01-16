@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("api/v1/orders")
 public class OrderController {
 
     private final OrderService orderService;
@@ -23,7 +23,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<OrderResponseDTO> createOrder(@RequestBody @Valid CreateOrderRequestDTO dto) {
 
         OrderResponseDTO orderResponseDTO = orderService.createOrder(dto);

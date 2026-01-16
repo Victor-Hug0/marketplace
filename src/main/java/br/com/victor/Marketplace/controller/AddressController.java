@@ -13,7 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("api/v1/addresses")
 public class AddressController {
 
     private final AddressService addressService;
@@ -22,7 +22,7 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<Address> createAddress(@RequestBody CreateAddressViaCepRequestDTO dto) {
 
         Address address = addressService.createAddress(dto);

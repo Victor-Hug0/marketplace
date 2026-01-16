@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("api/v1/customers")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -23,10 +23,10 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @PostMapping("/register")
+    @PostMapping()
     public ResponseEntity<CustomerResponseDTO> createCustomer(@RequestBody @Valid CreateCustomerRequestDTO dto) {
         CustomerResponseDTO responseDTO = customerService.createCustomer(dto);
-        URI location = URI.create("/customer/" + responseDTO.id());
+        URI location = URI.create("api/v1/customer/" + responseDTO.id());
         return ResponseEntity.created(location).body(responseDTO);
     }
 
@@ -47,7 +47,7 @@ public class CustomerController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/{id}/vinculateAddress")
+    @PostMapping("/{id}/address")
     public ResponseEntity<CustomerResponseDTO> vinculateAddressToCustomer(@PathVariable(name = "id") UUID id, @RequestBody CreateAddressViaCepRequestDTO dto) {
         CustomerResponseDTO responseDTO = customerService.createCustomerAddress(dto, id);
         return ResponseEntity.ok(responseDTO);

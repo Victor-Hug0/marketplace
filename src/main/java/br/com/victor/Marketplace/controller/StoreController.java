@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/store")
+@RequestMapping("api/v1/stores")
 public class StoreController {
 
     private final StoreService storeService;
@@ -23,7 +23,7 @@ public class StoreController {
         this.storeService = storeService;
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<StoreResponseDTO> createStore(@RequestBody @Valid CreateStoreRequestDTO dto) {
 
         StoreResponseDTO storeResponseDTO = storeService.createStore(dto);
